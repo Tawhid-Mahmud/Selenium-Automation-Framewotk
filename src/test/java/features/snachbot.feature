@@ -1,5 +1,6 @@
 
-@Test
+@Test_Facebook
+
 Feature: Verify the Snachbot functionality for the users
 
     Scenario: Validating that user can click create new account button
@@ -12,5 +13,8 @@ Feature: Verify the Snachbot functionality for the users
 #      When user fills first name, last name, mobile number, password, date of birth, and gender
 #      Then user can click the sign up page
 #      And create an account successfully
+
+
+
     
 
