@@ -10,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.ConfigReader;
@@ -98,8 +99,8 @@ public class StepDefinitionBooking {
 
     @Given("user can see multiple flight options")
     public void user_can_see_multiple_flight_options() {
-        Driver.getDriver().manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
-        System.out.println("Time out worked");
+        //Driver.getDriver().manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
+        //System.out.println("Time out worked");
 
         if(Driver.getDriver().findElement(By.xpath("//button[@data-testid='search_tabs_BEST']")).isDisplayed()){
             System.out.println("Results are visible");
@@ -109,11 +110,14 @@ public class StepDefinitionBooking {
     }
     @When("user can click on the {string} button")
     public void user_can_click_on_the_button(String string) {
-        System.out.println("Second Time out");
-        Driver.getDriver().manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
-        System.out.println("Time Out passed");
 
-        Driver.getDriver().findElement(By.xpath("//*[@data-testid='search_tabs_CHEAPEST']")).isDisplayed();
+        //Driver.getDriver().manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
+        WebElement element = Driver.getDriver().findElement(By.xpath("//*[@data-testid='search_tabs_CHEAPEST']"));
+        Actions actions = new Actions(Driver.getDriver());
+        actions.moveToElement(element).click().build().perform();
+
+        //Driver.getDriver().findElement(By.xpath("//*[@data-testid='search_tabs_CHEAPEST']")).click();
+        System.out.println("it worked");
 
 
 
@@ -122,7 +126,6 @@ public class StepDefinitionBooking {
     }
     @Then("from the first option user can click {string} button")
     public void from_the_first_option_user_can_click_button(String string) {
-        Driver.getDriver().findElement(By.xpath("//*[@data-testid='search_tabs_CHEAPEST']")).click();
         Driver.getDriver().findElement(By.xpath("//button[@aria-label='View details ']")).click();
     }
     @Then("click the {string} button")
