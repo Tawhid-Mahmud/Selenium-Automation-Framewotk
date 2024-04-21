@@ -4,6 +4,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.bytebuddy.implementation.bytecode.Throw;
+import org.jsoup.select.Evaluator;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -99,9 +100,6 @@ public class StepDefinitionBooking {
 
     @Given("user can see multiple flight options")
     public void user_can_see_multiple_flight_options() {
-        //Driver.getDriver().manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
-        //System.out.println("Time out worked");
-
         if(Driver.getDriver().findElement(By.xpath("//button[@data-testid='search_tabs_BEST']")).isDisplayed()){
             System.out.println("Results are visible");
         } else {
@@ -110,18 +108,11 @@ public class StepDefinitionBooking {
     }
     @When("user can click on the {string} button")
     public void user_can_click_on_the_button(String string) {
-
         //Driver.getDriver().manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
         WebElement element = Driver.getDriver().findElement(By.xpath("//*[@data-testid='search_tabs_CHEAPEST']"));
         Actions actions = new Actions(Driver.getDriver());
         actions.moveToElement(element).click().build().perform();
 
-        //Driver.getDriver().findElement(By.xpath("//*[@data-testid='search_tabs_CHEAPEST']")).click();
-        System.out.println("it worked");
-
-
-
-        //new WebDriverWait(getWebDriver(), 10).until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@data-testid='search_tabs_CHEAPEST']"))).click();
 
     }
     @Then("from the first option user can click {string} button")
@@ -135,4 +126,29 @@ public class StepDefinitionBooking {
 
 
 
+    @Given("user navigated to the choose your fare page")
+    public void user_navigated_to_the_choose_your_fare_page() {
+        if(Driver.getDriver().findElement(By.xpath("//*[text() = 'Choose your fare']")).isDisplayed()){
+            System.out.println("Choose your fare page is visible");
+        } else {
+            System.out.println("Page is not visible");
+        }
+
+    }
+    @When("user confirms trip summary")
+    public void user_confirms_trip_summary() {
+        Boolean tripType = Driver.getDriver().findElement(By.xpath("//*[text()='Round trip']")).isDisplayed();
+        Boolean traveler = Driver.getDriver().findElement(By.xpath("//*[text()='1 traveler']")).isDisplayed();
+        Boolean departureDate = Driver.getDriver().findElement(By.xpath("//*[contains(text(), 'Tue, Apr 30') ] ")).isDisplayed();
+        Boolean arrivalDate = Driver.getDriver().findElement(By.xpath("//*[text() = 'Sat, May 25']")).isDisplayed();
+        if(traveler & traveler & departureDate & arrivalDate){
+            System.out.println("Trip summary is good");
+        } else {
+            System.out.println("Something is wrong");
+        }
+    }
+    @Then("test is done")
+    public void test_is_done() {
+        System.out.println("Test is complete for booking flights");
+    }
 }

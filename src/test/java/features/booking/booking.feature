@@ -26,3 +26,8 @@ Feature: Verify booking.com flight page
       When user can click on the "Cheapest" button
       Then from the first option user can click "View details" button
       And click the "Select" button
+
+    Scenario: Confirming trip summary
+      Given user navigated to the choose your fare page
+      When user confirms trip summary
+      Then test is done
