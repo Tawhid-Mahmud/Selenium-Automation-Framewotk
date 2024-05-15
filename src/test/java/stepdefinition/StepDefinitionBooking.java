@@ -3,21 +3,11 @@ package stepdefinition;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import net.bytebuddy.implementation.bytecode.Throw;
-import org.jsoup.select.Evaluator;
-import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.ConfigReader;
 import utilities.Driver;
-
-import java.util.concurrent.TimeUnit;
 
 public class StepDefinitionBooking {
     @Given("User has the url")
@@ -86,7 +76,7 @@ public class StepDefinitionBooking {
     @Then("user can choose the departure date and return date")
     public void user_can_choose_the_departure_date_and_return_date() {
         Driver.getDriver().findElement(By.xpath("//button[@class='Actionable-module__root___b-k2d Button-module__root___e++Sn Button-module__root--variant-tertiary___Kr0Bm Button-module__root--icon-only___I42HC Button-module__root--size-large___hx5kG Button-module__root--variant-tertiary-neutral___A5bWt Calendar-module__control___igb9X Calendar-module__control--prev___0Q1vL']")).click();
-        Driver.getDriver().findElement(By.xpath("//*[@data-date='2024-04-30']")).click();
+        Driver.getDriver().findElement(By.xpath("//*[@data-date='2024-05-15']")).click();
         Driver.getDriver().findElement(By.xpath("//*[@data-date='2024-05-25']")).click();
 
     }
@@ -121,7 +111,9 @@ public class StepDefinitionBooking {
     }
     @Then("click the {string} button")
     public void click_the_button(String string) {
-        Driver.getDriver().findElement(By.xpath("//*[text()='Select']")).click();
+        WebElement dropDown =  Driver.getDriver().findElement(By.xpath("//*[text()='Select']"));
+        dropDown.click();
+
     }
 
 
@@ -139,13 +131,14 @@ public class StepDefinitionBooking {
     public void user_confirms_trip_summary() {
         Boolean tripType = Driver.getDriver().findElement(By.xpath("//*[text()='Round trip']")).isDisplayed();
         Boolean traveler = Driver.getDriver().findElement(By.xpath("//*[text()='1 traveler']")).isDisplayed();
-        Boolean departureDate = Driver.getDriver().findElement(By.xpath("//*[contains(text(), 'Tue, Apr 30') ] ")).isDisplayed();
+        Boolean departureDate = Driver.getDriver().findElement(By.xpath("//*[contains(text(), 'Tue, May 15') ] ")).isDisplayed();
         Boolean arrivalDate = Driver.getDriver().findElement(By.xpath("//*[text() = 'Sat, May 25']")).isDisplayed();
         if(traveler & traveler & departureDate & arrivalDate){
             System.out.println("Trip summary is good");
         } else {
             System.out.println("Something is wrong");
         }
+
     }
     @Then("test is done")
     public void test_is_done() {

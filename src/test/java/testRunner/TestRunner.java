@@ -9,7 +9,7 @@ import io.cucumber.junit.CucumberOptions;
 @CucumberOptions(
 		features = "src/test/java/features", 
             glue ="stepdefinition",
-            tags ="@Test2",
+            tags ="@Test_Stay_Page",
             plugin = {"pretty", "html:target/cucumber-reports.html"},
             monochrome = true,
             dryRun = false

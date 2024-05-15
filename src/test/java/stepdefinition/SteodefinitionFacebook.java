@@ -22,7 +22,7 @@ public class SteodefinitionFacebook {
     @Given("User has facebook url")
     public void user_has_facebook_url() {
         Driver.getDriver().get(ConfigReader.getProperty("url_prod"));
-
+        //fb.getUserName();
     }
     @When("user clicks create new account")
     public void user_clicks_create_new_account() {
