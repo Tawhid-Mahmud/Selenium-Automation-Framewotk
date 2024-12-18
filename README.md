@@ -49,4 +49,7 @@ Right-click on the class and select Run 'TestRunner.main()'.
 Using Command Line
 Open the terminal in IntelliJ or navigate to the project folder in your terminal.
 Run:
---mvn clean test
+ ```bash
+     --mvn clean test
+     ```
+
