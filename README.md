@@ -50,6 +50,6 @@ Using Command Line
 Open the terminal in IntelliJ or navigate to the project folder in your terminal.
 Run:
  ```bash
-     --mvn clean test
+     mvn clean test
  
 
