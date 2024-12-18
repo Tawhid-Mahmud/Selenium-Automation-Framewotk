@@ -1,54 +1,150 @@
 # Selenium Automation Test Framework
-### Test Development Set up
 
-### Getting started with Maven
+This repository contains a Selenium Automation Test Framework for web automation using Maven and IntelliJ IDEA. It follows the Behavior-Driven Development (BDD) framework with feature files, step definitions, and a TestRunner class.
 
-Maven set up and configuration need to be done by users
+## Prerequisites
 
-#### Ensure Maven Version & Home and Java Version & Environment
+Before you begin, ensure you have the following installed:
 
-```bash
+1. **Java Development Kit (JDK 11 or higher)**
+   - Verify installation:
+     ```bash
+     java -version
+     ```
+   - Set up `JAVA_HOME`:
+     ```bash
+     JAVA_HOME="Path\to\Java\jdk11"
+     ```
 
-$ mvn -version
+2. **Apache Maven**
+   - Verify installation:
+     ```bash
+     mvn -version
+     ```
 
-$ java -version
+3. **IntelliJ IDEA (Community or Ultimate Edition)**
 
-```
+---
 
-> Make sure to Set up JAVA_HOME as user variables```$ JAVA_HOME="Path\to\Java\jdk11"```
+## Project Setup in IntelliJ IDEA
 
- 
+### Import the Project
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
 
-### Set up project in Eclipse
+Here's how your updated instructions can be formatted as a README.md file for GitHub:
 
-> Import project in Eclipse as a Mavn project.
+markdown
+Copy code
+# Selenium Automation Test Framework
 
->dependencies are stored in pom.xml file which we get from the local repository
+This repository contains a Selenium Automation Test Framework for web automation using Maven and IntelliJ IDEA. It follows the Behavior-Driven Development (BDD) framework with feature files, step definitions, and a TestRunner class.
 
->POM.xml is the heart of this Selenium project.
+## Prerequisites
 
->It will store all dependencies inside it that are needed to run the projects.
+Before you begin, ensure you have the following installed:
 
->dependencies such as Selenium, Java, Cucumber, WebDriver Manager, JUnit etc are needed for this project
+1. **Java Development Kit (JDK 11 or higher)**
+   - Verify installation:
+     ```bash
+     java -version
+     ```
+   - Set up `JAVA_HOME`:
+     ```bash
+     JAVA_HOME="Path\to\Java\jdk11"
+     ```
 
->If new dependencies are being added make sure to update the project,
+2. **Apache Maven**
+   - Verify installation:
+     ```bash
+     mvn -version
+     ```
 
->Go to the Project Folder (in your IDE)
+3. **IntelliJ IDEA (Community or Ultimate Edition)**
 
->Right click => Maven => Update project => Select Force Update (For the dependencies to be taken in effect)
+---
 
->JUnit is used in this project. This project follows BDD framework,It has feature files which will explains about the test in very simple English language.
+## Project Setup in IntelliJ IDEA
 
->It has step definations files which is written in Java programming language.
+### Import the Project
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+Open IntelliJ IDEA.
+Go to File → New → Project from Existing Sources.
+Select the pom.xml file in the cloned repository.
+Choose Import as Maven Project.
+IntelliJ will automatically download all dependencies.
+Project Structure
+Feature Files:
+Store all feature files in the src/test/resources/features folder. These files describe test cases in simple English.
 
->It has TestRunner class which is the configuration for the running tests
+Step Definitions:
+Step definitions are written in Java under src/test/java/steps. They map feature file steps to Java methods.
 
- 
+Test Runner:
+The TestRunner class is in src/test/java/runner. It contains the configuration to execute the tests. Example:
 
- 
+java
+Copy code
+import org.junit.runner.RunWith;
+import io.cucumber.junit.Cucumber;
+import io.cucumber.junit.CucumberOptions;
 
-### How to run the project
+@RunWith(Cucumber.class)
+@CucumberOptions(
+    features = "src/test/resources/features",
+    glue = "steps",
+    plugin = {"pretty", "html:target/cucumber-report.html"}
+)
+public class TestRunner {
+}
+Dependencies
+The pom.xml file contains all the necessary dependencies for this framework. Below are the key dependencies:
 
->Right click anywhere on the project and choose "Run as" options and click JUnit Test
+xml
+Copy code
+<dependencies>
+    <!-- Selenium -->
+    <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-java</artifactId>
+        <version>4.5.0</version>
+    </dependency>
 
- 
+    <!-- WebDriver Manager -->
+    <dependency>
+        <groupId>io.github.bonigarcia</groupId>
+        <artifactId>webdrivermanager</artifactId>
+        <version>5.4.0</version>
+    </dependency>
+
+    <!-- JUnit -->
+    <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.13.2</version>
+    </dependency>
+
+    <!-- Cucumber -->
+    <dependency>
+        <groupId>io.cucumber</groupId>
+        <artifactId>cucumber-java</artifactId>
+        <version>7.12.0</version>
+    </dependency>
+    <dependency>
+        <groupId>io.cucumber</groupId>
+        <artifactId>cucumber-junit</artifactId>
+        <version>7.12.0</version>
+    </dependency>
+How to Run the Tests
+Using IntelliJ IDEA
+Navigate to the TestRunner class in the Project Explorer.
+Right-click on the class and select Run 'TestRunner.main()'.
+Using Command Line
+Open the terminal in IntelliJ or navigate to the project folder in your terminal.
+Run:
+bash
+Copy code
+mvn clean test
