@@ -1,4 +1,4 @@
-# SnachbotAutomationTestFramework
+# Selenium Automation Test Framework
 ### Test Development Set up
 
 ### Getting started with Maven
